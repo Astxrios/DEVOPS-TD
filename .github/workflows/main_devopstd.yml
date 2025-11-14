@@ -25,13 +25,13 @@ jobs:
           distribution: 'microsoft'
 
       - name: Build with Maven
-        run: mvn clean install package -f demande/pom.xml
+        run: mvn clean install
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
         with:
-          name: demande
-          path: '${{ github.workspace }}/demande/target/*.jar'
+          name: java-app
+          path: '${{ github.workspace }}/target/*.jar'
 
   deploy:
     runs-on: ubuntu-latest
@@ -44,14 +44,14 @@ jobs:
       - name: Download artifact from build job
         uses: actions/download-artifact@v4
         with:
-          name: demande
+          name: java-app
       
       - name: Login to Azure
         uses: azure/login@v2
         with:
-          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_BFAF6919B8EE490F8DFA5E65A36943EB }}
-          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_131797EFA3B74471B11724FE6F033887 }}
-          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_FDC5A182ADA84E958889DD7F1FE5A533 }}
+          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_B6E38479D5C34365AE553FFEF2A02FBF }}
+          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_B70B2924A1674696918F32D2B8F16DB2 }}
+          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_387A28E1BF204625A04193F1945668CF }}
 
       - name: Deploy to Azure Web App
         id: deploy-to-webapp
