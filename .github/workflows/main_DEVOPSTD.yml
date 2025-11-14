@@ -64,7 +64,7 @@ jobs:
 
           name: java-app
 
-          path: '${{ github.workspace }}/demande/target/classes/insa/fr/soa/*.jar'
+          path: '${{ github.workspace }}/demande/target/classes/insa/fr/soa/demande/*.jar'
 
 
 
